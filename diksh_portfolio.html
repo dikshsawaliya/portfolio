@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Diksh Sawaliya · Mobile Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Inter+Tight:wght@700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --accent:    #1a6ef5;
+  --accent-lt: #e8f0fe;
+  --accent-dk: #1558c8;
+  --c-game:    #e53e3e;
+  --c-ar:      #7c3aed;
+  --c-android: #2563eb;
+  --c-cross:   #059669;
+  --c-sdk:     #d97706;
+  --radius: 10px;
+  --radius-sm: 6px;
+  --mono: 'JetBrains Mono', monospace;
+  --head: 'Inter Tight', sans-serif;
+  --body: 'Inter', sans-serif;
+  --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04);
+}
+[data-theme="light"] {
+  --bg:      #f7f6f3;
+  --surface: #ffffff;
+  --card:    #ffffff;
+  --border:  #e4e2dc;
+  --border2: #cccac3;
+  --text:    #18171a;
+  --text2:   #4a4850;
+  --text3:   #8a8890;
+  --nav-bg:  rgba(247,246,243,0.92);
+  --tag-bg:  #efede8;
+  --tag-txt: #4a4850;
+  --hero-bg: linear-gradient(150deg,#eef3ff 0%,#f7f6f3 55%,#edfdf5 100%);
+}
+[data-theme="dark"] {
+  --bg:      #0f1117;
+  --surface: #161820;
+  --card:    #1c1f2a;
+  --border:  #272a35;
+  --border2: #353845;
+  --text:    #ece9f4;
+  --text2:   #9b99a8;
+  --text3:   #5c5a68;
+  --nav-bg:  rgba(15,17,23,0.9);
+  --tag-bg:  #22252f;
+  --tag-txt: #9b99a8;
+  --hero-bg: linear-gradient(150deg,#0f1a2e 0%,#0f1117 55%,#0a1a14 100%);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:16px;line-height:1.6;overflow-x:hidden;transition:background .3s,color .3s}
+
+/* Nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;transition:background .3s,border-color .3s,box-shadow .3s;border-bottom:1px solid transparent}
+nav.scrolled{background:var(--nav-bg);border-color:var(--border);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.nav-logo{font-family:var(--head);font-size:16px;font-weight:800;color:var(--accent);letter-spacing:-.02em;text-decoration:none}
+.nav-right{display:flex;align-items:center;gap:6px}
+.nav-links{display:flex;gap:2px;list-style:none}
+.nav-links a{font-size:13px;font-weight:500;color:var(--text2);text-decoration:none;padding:6px 12px;border-radius:var(--radius-sm);transition:color .2s,background .2s}
+.nav-links a:hover{color:var(--accent);background:var(--accent-lt)}
+[data-theme="dark"] .nav-links a:hover{background:rgba(26,110,245,.12)}
+.theme-btn{width:34px;height:34px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--card);color:var(--text2);font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.theme-btn:hover{border-color:var(--accent);color:var(--accent)}
+[data-theme="dark"] .i-sun{display:none}
+[data-theme="light"] .i-moon{display:none}
+
+/* Hero */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:100px 48px 80px;background:var(--hero-bg);position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 55% 50% at 72% 42%,rgba(26,110,245,.07) 0%,transparent 60%),radial-gradient(ellipse 40% 40% at 18% 78%,rgba(5,150,105,.05) 0%,transparent 55%);pointer-events:none}
+.hero-pill{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:500;color:var(--accent);background:var(--accent-lt);padding:5px 13px;border-radius:20px;margin-bottom:22px;width:fit-content;opacity:0;animation:fadeUp .7s .1s forwards}
+[data-theme="dark"] .hero-pill{background:rgba(26,110,245,.15)}
+.hero-pill::before{content:'●';font-size:7px}
+.hero-name{font-family:var(--head);font-size:clamp(50px,7vw,96px);font-weight:800;line-height:.97;letter-spacing:-.04em;margin-bottom:20px;opacity:0;animation:fadeUp .7s .25s forwards}
+.hero-name .hl{color:var(--accent)}
+.hero-sub{font-size:clamp(15px,1.8vw,18px);font-weight:400;color:var(--text2);max-width:490px;line-height:1.7;margin-bottom:38px;opacity:0;animation:fadeUp .7s .4s forwards}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;opacity:0;animation:fadeUp .7s .55s forwards}
+.btn{font-size:14px;font-weight:600;padding:11px 22px;border-radius:var(--radius-sm);text-decoration:none;transition:all .18s;cursor:pointer;border:none;display:inline-flex;align-items:center;gap:6px;font-family:var(--body)}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent-dk);transform:translateY(-1px);box-shadow:0 4px 14px rgba(26,110,245,.3)}
+.btn-outline{background:transparent;color:var(--text);border:1.5px solid var(--border2)}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+.hero-stats{display:flex;gap:36px;flex-wrap:wrap;margin-top:56px;padding-top:36px;border-top:1px solid var(--border);opacity:0;animation:fadeUp .7s .7s forwards}
+.stat-n{font-family:var(--head);font-size:26px;font-weight:800;letter-spacing:-.03em;color:var(--text);line-height:1;margin-bottom:2px}
+.stat-l{font-size:12px;font-weight:500;color:var(--text3)}
+
+/* Sections */
+section{padding:84px 48px}
+[data-theme="light"] #skills,#experience,#contact{background:var(--bg)}
+[data-theme="light"] #journey,#projects,footer{background:var(--surface)}
+[data-theme="dark"] #skills,#experience,#contact{background:var(--bg)}
+[data-theme="dark"] #journey,#projects,footer{background:var(--surface)}
+.sec-lbl{font-family:var(--mono);font-size:11px;font-weight:500;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+.sec-title{font-family:var(--head);font-size:clamp(28px,3.8vw,44px);font-weight:800;letter-spacing:-.03em;line-height:1.1;margin-bottom:44px}
+
+/* Skills */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:14px}
+.skill-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:22px;transition:border-color .2s,box-shadow .2s,transform .2s}
+.skill-card:hover{border-color:var(--accent);box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.skill-cat{font-size:11px;font-weight:600;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;margin-bottom:13px}
+.skill-tags{display:flex;flex-wrap:wrap;gap:6px}
+.skill-tag{font-size:12px;font-weight:500;background:var(--tag-bg);color:var(--tag-txt);padding:4px 10px;border-radius:4px}
+
+/* Journey */
+.journey-intro{max-width:580px;margin-bottom:52px;font-size:17px;color:var(--text2);line-height:1.75}
+.journey-intro strong{color:var(--text);font-weight:600}
+.journey-track{position:relative}
+.journey-track::before{content:'';position:absolute;left:18px;top:10px;bottom:10px;width:2px;background:var(--border);border-radius:2px}
+.j-era{display:grid;grid-template-columns:38px 1fr;gap:0 26px}
+.j-dot-col{display:flex;flex-direction:column;align-items:center;padding-top:4px}
+.j-dot{width:20px;height:20px;border-radius:50%;border:3px solid var(--border);background:var(--bg);position:relative;z-index:1;flex-shrink:0;transition:border-color .25s,background .25s,transform .25s}
+.j-era:hover .j-dot{transform:scale(1.2)}
+.e-game   .j-dot{border-color:var(--c-game)}
+.e-game:hover   .j-dot{background:var(--c-game)}
+.e-ar     .j-dot{border-color:var(--c-ar)}
+.e-ar:hover     .j-dot{background:var(--c-ar)}
+.e-android.j-dot,.e-android .j-dot{border-color:var(--c-android)}
+.e-android:hover .j-dot{background:var(--c-android)}
+.e-cross  .j-dot{border-color:var(--c-cross)}
+.e-cross:hover  .j-dot{background:var(--c-cross)}
+.e-sdk    .j-dot{border-color:var(--c-sdk)}
+.e-sdk:hover    .j-dot{background:var(--c-sdk)}
+.j-content{padding:0 0 48px 0;border-bottom:1px solid var(--border)}
+.j-era:last-child .j-content{border-bottom:none;padding-bottom:0}
+.j-meta{display:flex;align-items:center;gap:10px;margin-bottom:11px;flex-wrap:wrap}
+.j-year{font-family:var(--mono);font-size:11px;color:var(--text3);font-weight:500}
+.j-badge{font-size:11px;font-weight:600;padding:3px 10px;border-radius:4px;letter-spacing:.04em}
+.e-game   .j-badge{background:#fff1f0;color:#c53030}
+.e-ar     .j-badge{background:#f3f0ff;color:#5b21b6}
+.e-android .j-badge{background:#eff6ff;color:#1d4ed8}
+.e-cross  .j-badge{background:#f0fdf4;color:#065f46}
+.e-sdk    .j-badge{background:#fffbeb;color:#92400e}
+[data-theme="dark"] .e-game   .j-badge{background:rgba(229,62,62,.12);color:#fc8181}
+[data-theme="dark"] .e-ar     .j-badge{background:rgba(124,58,237,.12);color:#c4b5fd}
+[data-theme="dark"] .e-android .j-badge{background:rgba(37,99,235,.12);color:#93c5fd}
+[data-theme="dark"] .e-cross  .j-badge{background:rgba(5,150,105,.12);color:#6ee7b7}
+[data-theme="dark"] .e-sdk    .j-badge{background:rgba(217,119,6,.12);color:#fcd34d}
+.j-title{font-family:var(--head);font-size:clamp(18px,2.2vw,24px);font-weight:800;letter-spacing:-.02em;line-height:1.2;margin-bottom:11px}
+.j-body{font-size:15px;color:var(--text2);line-height:1.75;max-width:640px;margin-bottom:15px}
+.j-body strong{color:var(--text);font-weight:600}
+.j-tech{display:flex;flex-wrap:wrap;gap:6px}
+.j-tag{font-family:var(--mono);font-size:11px;font-weight:500;background:var(--tag-bg);color:var(--tag-txt);padding:3px 9px;border-radius:4px}
+
+/* Experience */
+.exp-list{display:flex;flex-direction:column;gap:12px}
+.exp-item{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:border-color .2s}
+.exp-item.open{border-color:var(--accent)}
+.exp-hd{padding:22px 26px;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;cursor:pointer;user-select:none}
+.exp-left{display:flex;flex-direction:column;gap:4px;flex:1}
+.exp-co{font-family:var(--head);font-size:18px;font-weight:700;letter-spacing:-.02em}
+.exp-role{font-size:13px;font-weight:500;color:var(--accent)}
+.exp-right{text-align:right;flex-shrink:0}
+.exp-period{font-family:var(--mono);font-size:12px;color:var(--text3)}
+.exp-loc{font-size:12px;color:var(--text3);margin-top:2px}
+.exp-tog{font-size:20px;font-weight:300;color:var(--text3);transition:transform .3s,color .2s;line-height:1;flex-shrink:0;margin-top:2px}
+.exp-item.open .exp-tog{transform:rotate(45deg);color:var(--accent)}
+.exp-hd:hover .exp-tog{color:var(--accent)}
+.exp-body{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s;padding:0 26px}
+.exp-body.open{max-height:700px;padding-bottom:22px}
+.exp-div{height:1px;background:var(--border);margin-bottom:18px}
+.exp-bul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.exp-bul li{font-size:14px;color:var(--text2);line-height:1.65;padding-left:20px;position:relative}
+.exp-bul li::before{content:'→';position:absolute;left:0;color:var(--accent);font-size:12px;top:2px}
+
+/* Projects */
+#projects{background:var(--surface) !important}
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:16px}
+.proj-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:26px;position:relative;transition:border-color .2s,box-shadow .2s,transform .2s}
+.proj-card:hover{border-color:var(--accent);box-shadow:var(--shadow-md);transform:translateY(-3px)}
+.proj-num{font-family:var(--mono);font-size:11px;color:var(--text3);margin-bottom:14px}
+.proj-title{font-family:var(--head);font-size:18px;font-weight:700;letter-spacing:-.02em;margin-bottom:9px;line-height:1.3}
+.proj-desc{font-size:14px;color:var(--text2);line-height:1.65;margin-bottom:18px}
+.proj-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
+.proj-tag{font-family:var(--mono);font-size:11px;background:var(--tag-bg);color:var(--tag-txt);padding:3px 9px;border-radius:4px}
+.proj-foot{font-family:var(--mono);font-size:11px;color:var(--text3);display:flex;align-items:center;gap:6px;padding-top:14px;border-top:1px solid var(--border)}
+.proj-foot .dot{color:var(--accent)}
+.proj-del{position:absolute;top:14px;right:14px;width:28px;height:28px;border-radius:6px;border:1px solid transparent;background:transparent;color:var(--text3);font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:all .2s}
+.proj-card:hover .proj-del{opacity:1}
+.proj-del:hover{border-color:#e53e3e;color:#e53e3e;background:rgba(229,62,62,.08)}
+.proj-add{border-style:dashed !important;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:230px;cursor:pointer;background:transparent !important}
+.proj-add:hover{border-color:var(--accent) !important;background:rgba(26,110,245,.02) !important;transform:none !important}
+.add-icon-ring{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--text3);margin-bottom:11px;transition:border-color .2s,color .2s}
+.proj-add:hover .add-icon-ring{border-color:var(--accent);color:var(--accent)}
+.add-lbl{font-size:13px;font-weight:500;color:var(--text3)}
+.proj-add:hover .add-lbl{color:var(--accent)}
+.admin-tile{border-style:dashed !important;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:230px;cursor:pointer;background:transparent !important;opacity:.5}
+.admin-tile:hover{opacity:.75;transform:none !important}
+.admin-tile-ico{font-size:20px;margin-bottom:7px}
+.admin-tile-lbl{font-size:12px;color:var(--text3)}
+
+/* Contact */
+.contact-wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:60px;align-items:start}
+.contact-lead{font-size:17px;color:var(--text2);line-height:1.75;margin-bottom:32px}
+.contact-links{display:flex;flex-direction:column;gap:10px}
+.c-link{display:flex;align-items:center;gap:13px;text-decoration:none;font-size:14px;font-weight:500;color:var(--text2);padding:13px 17px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--card);transition:all .2s}
+.c-link:hover{border-color:var(--accent);color:var(--accent);transform:translateX(4px)}
+.fld{margin-bottom:15px}
+.fld label{display:block;font-size:11px;font-weight:600;color:var(--text3);letter-spacing:.07em;text-transform:uppercase;margin-bottom:6px}
+.fld input,.fld textarea{width:100%;background:var(--card);border:1px solid var(--border);color:var(--text);font-family:var(--body);font-size:14px;padding:10px 13px;border-radius:var(--radius-sm);outline:none;transition:border-color .2s,box-shadow .2s;resize:vertical}
+.fld input:focus,.fld textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(26,110,245,.1)}
+.fld input::placeholder,.fld textarea::placeholder{color:var(--text3)}
+
+/* Footer */
+footer{border-top:1px solid var(--border);padding:26px 48px;background:var(--surface) !important;display:flex;align-items:center;justify-content:space-between}
+footer p{font-size:13px;color:var(--text3)}
+.status-pill{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:500;color:#059669;background:#f0fdf4;padding:5px 12px;border-radius:20px}
+[data-theme="dark"] .status-pill{background:rgba(5,150,105,.12);color:#6ee7b7}
+.sdot{width:6px;height:6px;border-radius:50%;background:#059669;animation:pulse 2s infinite}
+
+/* Modal */
+.modal-ov{position:fixed;inset:0;background:rgba(0,0,0,.5);backdrop-filter:blur(6px);z-index:500;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s}
+.modal-ov.open{opacity:1;pointer-events:all}
+.modal{background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-md);width:min(540px,92vw);padding:34px;transform:scale(.96) translateY(8px);transition:transform .25s}
+.modal-ov.open .modal{transform:scale(1) translateY(0)}
+.modal h2{font-family:var(--head);font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:4px}
+.modal .sub{font-size:13px;color:var(--text3);margin-bottom:22px}
+.modal-acts{display:flex;gap:10px;margin-top:22px}
+.btn-cancel{background:transparent;border:1px solid var(--border);color:var(--text2);font-size:14px;font-weight:500;padding:10px 20px;border-radius:var(--radius-sm);cursor:pointer;transition:all .2s;font-family:var(--body)}
+.btn-cancel:hover{border-color:var(--border2);color:var(--text)}
+.btn-save{background:var(--accent);border:none;color:#fff;font-size:14px;font-weight:600;padding:10px 24px;border-radius:var(--radius-sm);cursor:pointer;transition:background .2s,transform .15s;font-family:var(--body)}
+.btn-save:hover{background:var(--accent-dk);transform:translateY(-1px)}
+.pin-row{display:flex;gap:10px;justify-content:center;margin:18px 0 8px}
+.pin-d{width:50px;height:56px;text-align:center;font-family:var(--mono);font-size:22px;background:var(--bg);border:1.5px solid var(--border);color:var(--text);border-radius:var(--radius-sm);outline:none;transition:border-color .2s}
+.pin-d:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(26,110,245,.1)}
+.pin-err{font-size:13px;color:#e53e3e;text-align:center;min-height:18px}
+
+/* Toast */
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(70px);background:var(--text);color:var(--bg);font-size:13px;font-weight:500;padding:11px 22px;border-radius:8px;box-shadow:var(--shadow-md);z-index:9000;pointer-events:none;transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+.toast.show{transform:translateX(-50%) translateY(0)}
+
+/* Animations */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* Responsive */
+@media(max-width:720px){
+  nav{padding:13px 20px}
+  .nav-links{display:none}
+  .hero{padding:88px 20px 56px}
+  section{padding:60px 20px}
+  footer{padding:20px;flex-direction:column;gap:12px;text-align:center}
+  .contact-wrap{grid-template-columns:1fr;gap:36px}
+  .proj-grid{grid-template-columns:1fr}
+  .modal{padding:22px}
+  .hero-stats{gap:20px}
+}
+</style>
+</head>
+<body>
+<div class="toast" id="toast"></div>
+
+<!-- Nav -->
+<nav id="nav">
+  <a class="nav-logo" href="#home">DS</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#journey">Journey</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="theme-btn" onclick="toggleTheme()" aria-label="Toggle theme">
+      <span class="i-sun">☀</span><span class="i-moon">☾</span>
+    </button>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="home">
+  <div class="hero-pill">Senior Android &amp; Cross-Platform Engineer</div>
+  <h1 class="hero-name">Diksh<br><span class="hl">Sawaliya</span></h1>
+  <p class="hero-sub">Building production apps that serve millions — from AI-powered SDKs to 60fps Compose UIs. 3+ years across travel, fintech, retail, and networking.</p>
+  <div class="hero-btns">
+    <a href="#projects" class="btn btn-primary">View Projects →</a>
+    <a href="#contact" class="btn btn-outline">Get in Touch</a>
+  </div>
+  <div class="hero-stats">
+    <div><div class="stat-n">3+</div><div class="stat-l">Years experience</div></div>
+    <div><div class="stat-n">4+</div><div class="stat-l">Production apps</div></div>
+    <div><div class="stat-n">99.4%</div><div class="stat-l">Crash-free sessions</div></div>
+    <div><div class="stat-n">~40%</div><div class="stat-l">Integration time saved</div></div>
+    <div><div class="stat-n">100k+</div><div class="stat-l">Active users reached</div></div>
+  </div>
+</section>
+
+<!-- Skills -->
+<section id="skills">
+  <div class="reveal"><p class="sec-lbl">01 — Stack</p><h2 class="sec-title">Skills &amp; Technologies</h2></div>
+  <div class="skills-grid reveal">
+    <div class="skill-card"><div class="skill-cat">Languages</div><div class="skill-tags"><span class="skill-tag">Kotlin</span><span class="skill-tag">Java</span><span class="skill-tag">TypeScript</span><span class="skill-tag">HTML</span><span class="skill-tag">CSS</span><span class="skill-tag">XML</span></div></div>
+    <div class="skill-card"><div class="skill-cat">Android</div><div class="skill-tags"><span class="skill-tag">Jetpack Compose</span><span class="skill-tag">MVVM</span><span class="skill-tag">Coroutines</span><span class="skill-tag">Flows</span><span class="skill-tag">Room</span><span class="skill-tag">WorkManager</span><span class="skill-tag">Retrofit</span><span class="skill-tag">OkHttp</span><span class="skill-tag">Realm</span><span class="skill-tag">Firestore</span></div></div>
+    <div class="skill-card"><div class="skill-cat">Cross-Platform</div><div class="skill-tags"><span class="skill-tag">React Native</span><span class="skill-tag">Redux</span><span class="skill-tag">Zustand</span><span class="skill-tag">Reanimated</span><span class="skill-tag">Axios</span></div></div>
+    <div class="skill-card"><div class="skill-cat">SDK &amp; Infrastructure</div><div class="skill-tags"><span class="skill-tag">SDK Dev</span><span class="skill-tag">Voice Recognition</span><span class="skill-tag">Barcode Scanner</span><span class="skill-tag">Firebase Crashlytics</span><span class="skill-tag">Gradle</span><span class="skill-tag">LeakCanary</span></div></div>
+    <div class="skill-card"><div class="skill-cat">Tooling &amp; Testing</div><div class="skill-tags"><span class="skill-tag">Android Studio</span><span class="skill-tag">Git &amp; GitHub</span><span class="skill-tag">Postman</span><span class="skill-tag">Figma</span><span class="skill-tag">Selenium</span><span class="skill-tag">Appium</span><span class="skill-tag">REST APIs</span></div></div>
+    <div class="skill-card"><div class="skill-cat">AR / XR</div><div class="skill-tags"><span class="skill-tag">Unity</span><span class="skill-tag">Unreal Engine</span><span class="skill-tag">Jio SDK</span><span class="skill-tag">Meta VR</span></div></div>
+  </div>
+</section>
+
+<!-- Journey -->
+<section id="journey">
+  <div class="reveal"><p class="sec-lbl">02 — Evolution</p><h2 class="sec-title">My Tech Journey</h2></div>
+  <p class="journey-intro reveal">Most engineers pick a lane and stay there. I've deliberately jumped across worlds — from game engines to spatial computing to native Android to cross-platform SDKs. Each leap wasn't a detour; it was <strong>compound interest on curiosity.</strong></p>
+  <div class="journey-track reveal">
+
+    <div class="j-era e-game">
+      <div class="j-dot-col"><div class="j-dot"></div></div>
+      <div class="j-content">
+        <div class="j-meta"><span class="j-year">2021 – 2022</span><span class="j-badge">Game Development</span></div>
+        <h3 class="j-title">Started where imagination meets interactivity</h3>
+        <p class="j-body">My first serious engineering work was in <strong>game development</strong> — a domain that demands real-time systems, physics, rendering pipelines, and player psychology all at once. Building a <strong>zombie survival AR game for Jio Glasses</strong> at Shortgun taught me performance budgets, frame timing, and how to ship something that has to feel good — not just work correctly.</p>
+        <div class="j-tech"><span class="j-tag">Unity</span><span class="j-tag">C#</span><span class="j-tag">Jio SDK</span><span class="j-tag">Game Physics</span><span class="j-tag">XR Hardware</span></div>
+      </div>
+    </div>
+
+    <div class="j-era e-ar">
+      <div class="j-dot-col"><div class="j-dot"></div></div>
+      <div class="j-content">
+        <div class="j-meta"><span class="j-year">2022</span><span class="j-badge">AR / VR</span></div>
+        <h3 class="j-title">Went deeper into spatial computing</h3>
+        <p class="j-body">I didn't stop at games — I pushed into full <strong>augmented and virtual reality</strong>. At CSKAA, I built a <strong>Meta University virtual education environment</strong> and a photorealistic <strong>3D Car Visualizer</strong>. This era sharpened my understanding of 3D rendering, scene graphs, and how humans interact with space. The best technology disappears — the interface <em>becomes</em> the experience.</p>
+        <div class="j-tech"><span class="j-tag">Unreal Engine</span><span class="j-tag">Meta VR SDK</span><span class="j-tag">3D Rendering</span><span class="j-tag">Scene Design</span></div>
+      </div>
+    </div>
+
+    <div class="j-era e-android">
+      <div class="j-dot-col"><div class="j-dot"></div></div>
+      <div class="j-content">
+        <div class="j-meta"><span class="j-year">2021 – 2023</span><span class="j-badge">Native Android</span></div>
+        <h3 class="j-title">Grounded in the platform that runs the world</h3>
+        <p class="j-body">Parallel to game and AR work, I went deep into <strong>native Android</strong> — starting with Huawei HMS Core at my internship, shipping a fitness app end-to-end on AppGallery. Then at Hughes Systique, I scaled up: architecting <strong>MVVM + Coroutines + Flows</strong> across 4 production apps, lifting Yatra.com's crash-free sessions to <strong>99.4%+</strong>, and delivering 60fps Compose UIs for 100k+ active users. Android became my deepest craft.</p>
+        <div class="j-tech"><span class="j-tag">Kotlin</span><span class="j-tag">Jetpack Compose</span><span class="j-tag">MVVM</span><span class="j-tag">Coroutines</span><span class="j-tag">Flows</span><span class="j-tag">Room</span><span class="j-tag">Firebase</span><span class="j-tag">LeakCanary</span></div>
+      </div>
+    </div>
+
+    <div class="j-era e-cross">
+      <div class="j-dot-col"><div class="j-dot"></div></div>
+      <div class="j-content">
+        <div class="j-meta"><span class="j-year">2023 – 2024</span><span class="j-badge">Cross-Platform</span></div>
+        <h3 class="j-title">Bridged native precision with platform reach</h3>
+        <p class="j-body">A natural Android engineer could have stopped there. I didn't. I learned <strong>React Native</strong> to understand how product teams build across iOS and Android simultaneously — and immediately put it to use by building a <strong>React Native wrapper around a native voice SDK</strong>, cutting partner integration time by 40%. Knowing both worlds lets me make smarter architectural choices.</p>
+        <div class="j-tech"><span class="j-tag">React Native</span><span class="j-tag">TypeScript</span><span class="j-tag">Redux</span><span class="j-tag">Zustand</span><span class="j-tag">Reanimated</span><span class="j-tag">Axios</span></div>
+      </div>
+    </div>
+
+    <div class="j-era e-sdk">
+      <div class="j-dot-col"><div class="j-dot"></div></div>
+      <div class="j-content">
+        <div class="j-meta"><span class="j-year">2024 – Present</span><span class="j-badge">SDK &amp; AI</span></div>
+        <h3 class="j-title">Now building the tools other engineers build on</h3>
+        <p class="j-body">The current frontier: <strong>SDK architecture and AI integration</strong>. I've shipped an AI-powered voice recognition SDK, a barcode scanner SDK for industrial hardware, and automated CI pipelines that cut QA cycles by 30%. Every chapter — games, AR, Android, cross-platform — fed into this. I understand latency, device constraints, and production-grade reliability from every angle. <strong>What's next? Whatever the hardest problem is.</strong></p>
+        <div class="j-tech"><span class="j-tag">SDK Architecture</span><span class="j-tag">Voice AI</span><span class="j-tag">Barcode Integration</span><span class="j-tag">Gradle</span><span class="j-tag">Appium</span><span class="j-tag">CI/CD</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Experience -->
+<section id="experience">
+  <div class="reveal"><p class="sec-lbl">03 — Work History</p><h2 class="sec-title">Experience</h2></div>
+  <div class="exp-list reveal">
+    <div class="exp-item open">
+      <div class="exp-hd" onclick="toggleExp(this)">
+        <div class="exp-left"><div class="exp-co">Hughes Systique Corporation</div><div class="exp-role">Engineer</div></div>
+        <div class="exp-right"><div class="exp-period">Jan 2023 – Present</div><div class="exp-loc">Gurgaon, India</div></div>
+        <div class="exp-tog">+</div>
+      </div>
+      <div class="exp-body open"><div class="exp-div"></div>
+        <ul class="exp-bul">
+          <li>Architected and shipped an AI-powered voice recognition SDK with a React Native wrapper, cutting cross-platform integration time by ~40% for partner teams across 3 domains</li>
+          <li>Reduced app crash rate to 99.4%+ crash-free sessions on Yatra.com Android via structured Firebase Crashlytics alerting, targeted ANR fixes, and memory leak resolution using LeakCanary</li>
+          <li>Led barcode scanner SDK integration for Denso retail hardware, achieving &lt;200ms scan-to-result latency with full compatibility across 5+ hardware SKUs</li>
+          <li>Built scalable MVVM architecture with Coroutines, Flows, and Repository Pattern across 4+ production apps — reducing codebase coupling and improving feature delivery speed</li>
+          <li>Automated regression testing with Selenium + Appium, cutting manual QA cycle time by ~30% and enabling CI-gated deployments</li>
+          <li>Delivered animated, high-performance UIs using Jetpack Compose and Reanimated for apps with 100k+ active users, maintaining 60fps on mid-range devices</li>
+          <li>Integrated RESTful APIs via Retrofit, OkHttp, and Axios with real-time Firestore sync, supporting live data flows across travel and networking products</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-hd" onclick="toggleExp(this)">
+        <div class="exp-left"><div class="exp-co">Shortgun</div><div class="exp-role">Game Developer</div></div>
+        <div class="exp-right"><div class="exp-period">Jun 2022 – Dec 2022</div><div class="exp-loc">Mumbai, India</div></div>
+        <div class="exp-tog">+</div>
+      </div>
+      <div class="exp-body"><div class="exp-div"></div>
+        <ul class="exp-bul"><li>Developed a zombie survival AR game for Jio Glasses using Unity + Jio SDK, delivering immersive gameplay optimised for constrained XR hardware</li></ul>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-hd" onclick="toggleExp(this)">
+        <div class="exp-left"><div class="exp-co">CSKAA</div><div class="exp-role">AR/VR Developer</div></div>
+        <div class="exp-right"><div class="exp-period">Jun 2022 – Sep 2022</div><div class="exp-loc">Noida, India</div></div>
+        <div class="exp-tog">+</div>
+      </div>
+      <div class="exp-body"><div class="exp-div"></div>
+        <ul class="exp-bul"><li>Built a Meta University virtual education environment and a 3D Car Visualizer with realistic rendering — shipped to internal stakeholders on schedule</li></ul>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-hd" onclick="toggleExp(this)">
+        <div class="exp-left"><div class="exp-co">Huawei</div><div class="exp-role">Android Developer Intern</div></div>
+        <div class="exp-right"><div class="exp-period">Jun 2021 – Sep 2021</div></div>
+        <div class="exp-tog">+</div>
+      </div>
+      <div class="exp-body"><div class="exp-div"></div>
+        <ul class="exp-bul"><li>Developed and published GettingRipped fitness app on Huawei AppGallery end-to-end using Huawei HMS Core, gaining hands-on deployment experience</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Projects -->
+<section id="projects">
+  <div class="reveal"><p class="sec-lbl">04 — Featured Work</p><h2 class="sec-title">Projects</h2></div>
+  <div class="proj-grid reveal" id="projGrid"></div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+  <div class="reveal"><p class="sec-lbl">05 — Get In Touch</p><h2 class="sec-title">Let's Work Together</h2></div>
+  <div class="contact-wrap reveal">
+    <div>
+      <p class="contact-lead">Open to senior Android and cross-platform roles. If you're building something ambitious — let's talk.</p>
+      <div class="contact-links">
+        <a href="mailto:diksh101sawaliya@gmail.com" class="c-link"><span>✉</span> diksh101sawaliya@gmail.com</a>
+        <a href="tel:+918800869633" class="c-link"><span>✆</span> +91 88008 69633</a>
+        <a href="#" class="c-link"><span>⌖</span> Gurgaon, India</a>
+      </div>
+    </div>
+    <div>
+      <div class="fld"><label>Your Name</label><input type="text" placeholder="Jane Smith" /></div>
+      <div class="fld"><label>Email</label><input type="email" placeholder="jane@company.com" /></div>
+      <div class="fld"><label>Message</label><textarea rows="5" placeholder="Tell me about the opportunity..."></textarea></div>
+      <button class="btn btn-primary" onclick="handleContact()" style="width:100%;justify-content:center;margin-top:4px">Send Message →</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Diksh Sawaliya</p>
+  <div class="status-pill"><div class="sdot"></div> Open to opportunities</div>
+</footer>
+
+<!-- Add Project Modal -->
+<div class="modal-ov" id="addModal">
+  <div class="modal">
+    <h2>Add New Project</h2>
+    <p class="sub">Appears on your portfolio instantly.</p>
+    <div class="fld"><label>Project Title *</label><input type="text" id="pTitle" placeholder="e.g. Voice SDK for Android" /></div>
+    <div class="fld"><label>Description *</label><textarea id="pDesc" rows="3" placeholder="What did you build? What problem did it solve?"></textarea></div>
+    <div class="fld"><label>Tech Stack (comma separated)</label><input type="text" id="pTags" placeholder="Kotlin, Jetpack Compose, Retrofit" /></div>
+    <div class="fld"><label>Domain / Type</label><input type="text" id="pDomain" placeholder="e.g. SDK · Android · Fintech" /></div>
+    <div class="fld"><label>Year</label><input type="text" id="pYear" placeholder="2025" /></div>
+    <div class="modal-acts">
+      <button class="btn-cancel" onclick="closeAdd()">Cancel</button>
+      <button class="btn-save" onclick="saveProject()">Save Project</button>
+    </div>
+  </div>
+</div>
+
+<!-- PIN Modal -->
+<div class="modal-ov" id="pinModal">
+  <div class="modal" style="max-width:340px;text-align:center">
+    <h2>Admin Access</h2>
+    <p class="sub">Enter your 4-digit PIN to manage projects</p>
+    <div class="pin-row">
+      <input class="pin-d" id="p0" maxlength="1" type="password" inputmode="numeric" />
+      <input class="pin-d" id="p1" maxlength="1" type="password" inputmode="numeric" />
+      <input class="pin-d" id="p2" maxlength="1" type="password" inputmode="numeric" />
+      <input class="pin-d" id="p3" maxlength="1" type="password" inputmode="numeric" />
+    </div>
+    <div class="pin-err" id="pinErr"></div>
+    <div class="modal-acts" style="justify-content:center;margin-top:14px">
+      <button class="btn-cancel" onclick="closePin()">Cancel</button>
+      <button class="btn-save" onclick="checkPin()">Unlock</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ── Theme: read on load, persist ── */
+(function(){
+  const t = localStorage.getItem('ds_theme') || 'light';
+  document.documentElement.setAttribute('data-theme', t);
+})();
+function toggleTheme(){
+  const cur = document.documentElement.getAttribute('data-theme');
+  const nxt = cur==='light'?'dark':'light';
+  document.documentElement.setAttribute('data-theme', nxt);
+  localStorage.setItem('ds_theme', nxt);
+}
+
+/* ── Nav scroll ── */
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY>40);
+});
+
+/* ── Scroll reveal ── */
+const reveals = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{ if(e.isIntersecting) setTimeout(()=>e.target.classList.add('visible'), i*65); });
+},{threshold:.08});
+reveals.forEach(el=>obs.observe(el));
+
+/* ── Accordion ── */
+function toggleExp(hd){
+  const item = hd.closest('.exp-item');
+  const body = item.querySelector('.exp-body');
+  const open = item.classList.contains('open');
+  document.querySelectorAll('.exp-item').forEach(i=>{
+    i.classList.remove('open');
+    i.querySelector('.exp-body').classList.remove('open');
+  });
+  if(!open){ item.classList.add('open'); body.classList.add('open'); }
+}
+
+/* ── Projects & Admin ── */
+const PIN = '2580'; // ← change to your private PIN before publishing
+let admin = false;
+let userProjects = [];
+try{ userProjects = JSON.parse(localStorage.getItem('ds_projs')||'[]'); }catch(e){}
+
+const defaults = [
+  {id:'d1',title:'AI Voice Recognition SDK',desc:'Architected and shipped a cross-platform voice recognition SDK with a React Native wrapper that cut integration time by ~40% for partner teams across 3 product domains.',tags:['Kotlin','React Native','Voice SDK','AI/ML'],domain:'SDK · Cross-Platform',year:'2024'},
+  {id:'d2',title:'Yatra.com Android — Stability',desc:'Drove crash-free sessions to 99.4%+ on a travel app serving millions. Implemented Firebase Crashlytics alerting, fixed ANRs, and resolved memory leaks using LeakCanary.',tags:['Kotlin','Firebase','LeakCanary','Crashlytics'],domain:'Travel · Android',year:'2023'},
+  {id:'d3',title:'Barcode Scanner SDK — Denso',desc:'Led SDK integration for Denso retail hardware achieving <200ms scan-to-result latency with full compatibility across 5+ hardware SKUs.',tags:['Kotlin','SDK','Hardware Integration','Retail'],domain:'Retail · Android',year:'2024'},
+  {id:'d4',title:'GettingRipped — Fitness App',desc:'Developed and published an end-to-end fitness application on Huawei AppGallery using Huawei HMS Core during an Android internship.',tags:['Kotlin','HMS Core','Huawei AppGallery'],domain:'Health · Android',year:'2021'},
+  {id:'d5',title:'AR Zombie Survival — Jio Glasses',desc:'Built a zombie survival AR game for Jio smart glasses using Unity + Jio SDK, optimised for constrained XR hardware.',tags:['Unity','C#','Jio SDK','AR/XR'],domain:'Gaming · AR',year:'2022'}
+];
+
+function renderProjects(){
+  const g = document.getElementById('projGrid');
+  g.innerHTML = '';
+  [...defaults,...userProjects].forEach((p,i)=>{
+    const c = document.createElement('div');
+    c.className = 'proj-card reveal';
+    c.innerHTML = `
+      ${(admin&&!p.id.startsWith('d'))?`<button class="proj-del" onclick="delProj('${p.id}',event)">✕</button>`:''}
+      <div class="proj-num">0${i+1}</div>
+      <div class="proj-title">${p.title}</div>
+      <div class="proj-desc">${p.desc}</div>
+      <div class="proj-tags">${(p.tags||[]).map(t=>`<span class="proj-tag">${t}</span>`).join('')}</div>
+      <div class="proj-foot"><span class="dot">●</span>${p.year||''}${p.domain?' · '+p.domain:''}</div>
+    `;
+    g.appendChild(c);
+    obs.observe(c);
+  });
+  // Trailing card
+  const ac = document.createElement('div');
+  if(admin){
+    ac.className='proj-card proj-add';
+    ac.onclick=openAdd;
+    ac.innerHTML=`<div class="add-icon-ring">+</div><div class="add-lbl">Add New Project</div>`;
+  } else {
+    ac.className='proj-card admin-tile';
+    ac.onclick=openPin;
+    ac.title='Admin login';
+    ac.innerHTML=`<div class="admin-tile-ico">🔒</div><div class="admin-tile-lbl">Admin</div>`;
+  }
+  g.appendChild(ac);
+}
+renderProjects();
+
+/* PIN */
+function openPin(){
+  document.getElementById('pinModal').classList.add('open');
+  document.getElementById('pinErr').textContent='';
+  [0,1,2,3].forEach(i=>document.getElementById('p'+i).value='');
+  setTimeout(()=>document.getElementById('p0').focus(),80);
+}
+function closePin(){ document.getElementById('pinModal').classList.remove('open'); }
+[0,1,2,3].forEach(i=>{
+  const el = document.getElementById('p'+i);
+  el.addEventListener('input',function(){
+    if(this.value.length===1&&i<3) document.getElementById('p'+(i+1)).focus();
+    if(this.value.length===1&&i===3) checkPin();
+  });
+  el.addEventListener('keydown',function(e){
+    if(e.key==='Backspace'&&!this.value&&i>0) document.getElementById('p'+(i-1)).focus();
+    if(e.key==='Enter') checkPin();
+  });
+});
+function checkPin(){
+  const entered=[0,1,2,3].map(i=>document.getElementById('p'+i).value).join('');
+  if(entered===PIN){
+    admin=true; closePin(); renderProjects(); toast('Admin mode on ✓');
+  } else {
+    document.getElementById('pinErr').textContent='Incorrect PIN — try again';
+    [0,1,2,3].forEach(i=>document.getElementById('p'+i).value='');
+    document.getElementById('p0').focus();
+  }
+}
+
+/* Add project */
+function openAdd(){ document.getElementById('addModal').classList.add('open'); }
+function closeAdd(){
+  document.getElementById('addModal').classList.remove('open');
+  ['pTitle','pDesc','pTags','pDomain','pYear'].forEach(id=>document.getElementById(id).value='');
+}
+document.getElementById('addModal').addEventListener('click',e=>{if(e.target===document.getElementById('addModal')) closeAdd();});
+document.getElementById('pinModal').addEventListener('click',e=>{if(e.target===document.getElementById('pinModal')) closePin();});
+
+function saveProject(){
+  const title=document.getElementById('pTitle').value.trim();
+  const desc=document.getElementById('pDesc').value.trim();
+  if(!title||!desc){ toast('Title and description required'); return; }
+  const tags=document.getElementById('pTags').value.split(',').map(t=>t.trim()).filter(Boolean);
+  const domain=document.getElementById('pDomain').value.trim();
+  const year=document.getElementById('pYear').value.trim()||new Date().getFullYear().toString();
+  userProjects.unshift({id:'p_'+Date.now(),title,desc,tags,domain,year});
+  try{ localStorage.setItem('ds_projs',JSON.stringify(userProjects)); }catch(e){}
+  renderProjects(); closeAdd(); toast('Project saved ✓');
+}
+function delProj(id,e){
+  e.stopPropagation();
+  userProjects=userProjects.filter(p=>p.id!==id);
+  try{ localStorage.setItem('ds_projs',JSON.stringify(userProjects)); }catch(e){}
+  renderProjects(); toast('Project removed');
+}
+
+/* Toast */
+function toast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2600);
+}
+function handleContact(){ toast('Message sent! (demo mode)'); }
+</script>
+</body>
+</html>
