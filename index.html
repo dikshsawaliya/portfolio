@@ -15,19 +15,10 @@
 
 <!-- Nav -->
 <nav id="nav">
-  <a class="nav-logo" href="#home">DS</a>
+  <a class="nav-logo" id="navLogo" href="#home"></a>
   <div class="nav-right">
-    <ul class="nav-links">
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#journey">Journey</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <div class="header-social">
-      <a href="https://github.com/dikshsawaliya" class="social-link" target="_blank" rel="noopener noreferrer">GitHub</a>
-      <a href="https://www.linkedin.com/in/diksh-sawaliya-6111381a7/" class="social-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-    </div>
+    <ul class="nav-links" id="navLinks"></ul>
+    <div class="header-social" id="socialLinks"></div>
     <button class="theme-btn" aria-label="Toggle theme">
       <span class="i-sun">☀</span><span class="i-moon">☾</span>
     </button>
@@ -36,183 +27,36 @@
 
 <!-- Hero -->
 <section class="hero" id="home">
-  <div class="hero-pill">Senior Android &amp; Cross-Platform Engineer</div>
-  <h1 class="hero-name">Diksh<br><span class="hl">Sawaliya</span></h1>
-  <p class="hero-sub">Building production apps that serve millions — from AI-powered SDKs to 60fps Compose UIs. 3+ years across travel, fintech, retail, and networking.</p>
-  <div class="hero-btns">
-    <a href="#projects" class="btn btn-primary">View Projects →</a>
-    <a href="#contact" class="btn btn-outline">Get in Touch</a>
-  </div>
-  <div class="hero-stats">
-    <div><div class="stat-n">3+</div><div class="stat-l">Years experience</div></div>
-    <div><div class="stat-n">4+</div><div class="stat-l">Production apps</div></div>
-    <div><div class="stat-n">99.4%</div><div class="stat-l">Crash-free sessions</div></div>
-    <div><div class="stat-n">~40%</div><div class="stat-l">Integration time saved</div></div>
-    <div><div class="stat-n">100k+</div><div class="stat-l">Active users reached</div></div>
-  </div>
+  <div id="heroContent"></div>
 </section>
 
 <!-- Skills -->
 <section id="skills">
-  <div class="reveal"><p class="sec-lbl">01 — Stack</p><h2 class="sec-title">Skills &amp; Technologies</h2></div>
-  <div class="skills-grid reveal">
-    <div class="skill-card"><div class="skill-cat">Languages</div><div class="skill-tags"><span class="skill-tag">Kotlin</span><span class="skill-tag">Java</span><span class="skill-tag">TypeScript</span><span class="skill-tag">HTML</span><span class="skill-tag">CSS</span><span class="skill-tag">XML</span></div></div>
-    <div class="skill-card"><div class="skill-cat">Android</div><div class="skill-tags"><span class="skill-tag">Jetpack Compose</span><span class="skill-tag">MVVM</span><span class="skill-tag">Coroutines</span><span class="skill-tag">Flows</span><span class="skill-tag">Room</span><span class="skill-tag">WorkManager</span><span class="skill-tag">Retrofit</span><span class="skill-tag">OkHttp</span><span class="skill-tag">Realm</span><span class="skill-tag">Firestore</span></div></div>
-    <div class="skill-card"><div class="skill-cat">Cross-Platform</div><div class="skill-tags"><span class="skill-tag">React Native</span><span class="skill-tag">Redux</span><span class="skill-tag">Zustand</span><span class="skill-tag">Reanimated</span><span class="skill-tag">Axios</span></div></div>
-    <div class="skill-card"><div class="skill-cat">SDK &amp; Infrastructure</div><div class="skill-tags"><span class="skill-tag">SDK Dev</span><span class="skill-tag">Voice Recognition</span><span class="skill-tag">Barcode Scanner</span><span class="skill-tag">Firebase Crashlytics</span><span class="skill-tag">Gradle</span><span class="skill-tag">LeakCanary</span></div></div>
-    <div class="skill-card"><div class="skill-cat">Tooling &amp; Testing</div><div class="skill-tags"><span class="skill-tag">Android Studio</span><span class="skill-tag">Git &amp; GitHub</span><span class="skill-tag">Postman</span><span class="skill-tag">Figma</span><span class="skill-tag">Selenium</span><span class="skill-tag">Appium</span><span class="skill-tag">REST APIs</span></div></div>
-    <div class="skill-card"><div class="skill-cat">AR / XR</div><div class="skill-tags"><span class="skill-tag">Unity</span><span class="skill-tag">Unreal Engine</span><span class="skill-tag">Jio SDK</span><span class="skill-tag">Meta VR</span></div></div>
-  </div>
+  <div id="skillsContent"></div>
 </section>
 
 <!-- Journey -->
 <section id="journey">
-  <div class="reveal"><p class="sec-lbl">02 — Evolution</p><h2 class="sec-title">My Tech Journey</h2></div>
-  <p class="journey-intro reveal">Most engineers pick a lane and stay there. I've deliberately jumped across worlds — from game engines to spatial computing to native Android to cross-platform SDKs. Each leap wasn't a detour; it was <strong>compound interest on curiosity.</strong></p>
-  <div class="journey-track reveal">
-
-    <div class="j-era e-game">
-      <div class="j-dot-col"><div class="j-dot"></div></div>
-      <div class="j-content">
-        <div class="j-meta"><span class="j-year">2021 – 2022</span><span class="j-badge">Game Development</span></div>
-        <h3 class="j-title">Started where imagination meets interactivity</h3>
-        <p class="j-body">My first serious engineering work was in <strong>game development</strong> — a domain that demands real-time systems, physics, rendering pipelines, and player psychology all at once. Building a <strong>zombie survival AR game for Jio Glasses</strong> at Shortgun taught me performance budgets, frame timing, and how to ship something that has to feel good — not just work correctly.</p>
-        <div class="j-tech"><span class="j-tag">Unity</span><span class="j-tag">C#</span><span class="j-tag">Jio SDK</span><span class="j-tag">Game Physics</span><span class="j-tag">XR Hardware</span></div>
-      </div>
-    </div>
-
-    <div class="j-era e-ar">
-      <div class="j-dot-col"><div class="j-dot"></div></div>
-      <div class="j-content">
-        <div class="j-meta"><span class="j-year">2022</span><span class="j-badge">AR / VR</span></div>
-        <h3 class="j-title">Went deeper into spatial computing</h3>
-        <p class="j-body">I didn't stop at games — I pushed into full <strong>augmented and virtual reality</strong>. At CSKAA, I built a <strong>Meta University virtual education environment</strong> and a photorealistic <strong>3D Car Visualizer</strong>. This era sharpened my understanding of 3D rendering, scene graphs, and how humans interact with space. The best technology disappears — the interface <em>becomes</em> the experience.</p>
-        <div class="j-tech"><span class="j-tag">Unreal Engine</span><span class="j-tag">Meta VR SDK</span><span class="j-tag">3D Rendering</span><span class="j-tag">Scene Design</span></div>
-      </div>
-    </div>
-
-    <div class="j-era e-android">
-      <div class="j-dot-col"><div class="j-dot"></div></div>
-      <div class="j-content">
-        <div class="j-meta"><span class="j-year">2021 – 2023</span><span class="j-badge">Native Android</span></div>
-        <h3 class="j-title">Grounded in the platform that runs the world</h3>
-        <p class="j-body">Parallel to game and AR work, I went deep into <strong>native Android</strong> — starting with Huawei HMS Core at my internship, shipping a fitness app end-to-end on AppGallery. Then at Hughes Systique, I scaled up: architecting <strong>MVVM + Coroutines + Flows</strong> across 4 production apps, lifting Yatra.com's crash-free sessions to <strong>99.4%+</strong>, and delivering 60fps Compose UIs for 100k+ active users. Android became my deepest craft.</p>
-        <div class="j-tech"><span class="j-tag">Kotlin</span><span class="j-tag">Jetpack Compose</span><span class="j-tag">MVVM</span><span class="j-tag">Coroutines</span><span class="j-tag">Flows</span><span class="j-tag">Room</span><span class="j-tag">Firebase</span><span class="j-tag">LeakCanary</span></div>
-      </div>
-    </div>
-
-    <div class="j-era e-cross">
-      <div class="j-dot-col"><div class="j-dot"></div></div>
-      <div class="j-content">
-        <div class="j-meta"><span class="j-year">2023 – 2024</span><span class="j-badge">Cross-Platform</span></div>
-        <h3 class="j-title">Bridged native precision with platform reach</h3>
-        <p class="j-body">A natural Android engineer could have stopped there. I didn't. I learned <strong>React Native</strong> to understand how product teams build across iOS and Android simultaneously — and immediately put it to use by building a <strong>React Native wrapper around a native voice SDK</strong>, cutting partner integration time by 40%. Knowing both worlds lets me make smarter architectural choices.</p>
-        <div class="j-tech"><span class="j-tag">React Native</span><span class="j-tag">TypeScript</span><span class="j-tag">Redux</span><span class="j-tag">Zustand</span><span class="j-tag">Reanimated</span><span class="j-tag">Axios</span></div>
-      </div>
-    </div>
-
-    <div class="j-era e-sdk">
-      <div class="j-dot-col"><div class="j-dot"></div></div>
-      <div class="j-content">
-        <div class="j-meta"><span class="j-year">2024 – Present</span><span class="j-badge">SDK &amp; AI</span></div>
-        <h3 class="j-title">Now building the tools other engineers build on</h3>
-        <p class="j-body">The current frontier: <strong>SDK architecture and AI integration</strong>. I've shipped an AI-powered voice recognition SDK, a barcode scanner SDK for industrial hardware, and automated CI pipelines that cut QA cycles by 30%. Every chapter — games, AR, Android, cross-platform — fed into this. I understand latency, device constraints, and production-grade reliability from every angle. <strong>What's next? Whatever the hardest problem is.</strong></p>
-        <div class="j-tech"><span class="j-tag">SDK Architecture</span><span class="j-tag">Voice AI</span><span class="j-tag">Barcode Integration</span><span class="j-tag">Gradle</span><span class="j-tag">Appium</span><span class="j-tag">CI/CD</span></div>
-      </div>
-    </div>
-
-  </div>
+  <div id="journeyContent"></div>
 </section>
 
 <!-- Experience -->
 <section id="experience">
-  <div class="reveal"><p class="sec-lbl">03 — Work History</p><h2 class="sec-title">Experience</h2></div>
-  <div class="exp-list reveal">
-    <div class="exp-item open">
-      <div class="exp-hd">
-        <div class="exp-left"><div class="exp-co">Hughes Systique Corporation</div><div class="exp-role">Engineer</div></div>
-        <div class="exp-right"><div class="exp-period">Jan 2023 – Present</div><div class="exp-loc">Gurgaon, India</div></div>
-        <div class="exp-tog">+</div>
-      </div>
-      <div class="exp-body open"><div class="exp-div"></div>
-        <ul class="exp-bul">
-          <li>Architected and shipped an AI-powered voice recognition SDK with a React Native wrapper, cutting cross-platform integration time by ~40% for partner teams across 3 domains</li>
-          <li>Reduced app crash rate to 99.4%+ crash-free sessions on Yatra.com Android via structured Firebase Crashlytics alerting, targeted ANR fixes, and memory leak resolution using LeakCanary</li>
-          <li>Led barcode scanner SDK integration for Denso retail hardware, achieving &lt;200ms scan-to-result latency with full compatibility across 5+ hardware SKUs</li>
-          <li>Built scalable MVVM architecture with Coroutines, Flows, and Repository Pattern across 4+ production apps — reducing codebase coupling and improving feature delivery speed</li>
-          <li>Automated regression testing with Selenium + Appium, cutting manual QA cycle time by ~30% and enabling CI-gated deployments</li>
-          <li>Delivered animated, high-performance UIs using Jetpack Compose and Reanimated for apps with 100k+ active users, maintaining 60fps on mid-range devices</li>
-          <li>Integrated RESTful APIs via Retrofit, OkHttp, and Axios with real-time Firestore sync, supporting live data flows across travel and networking products</li>
-        </ul>
-      </div>
-    </div>
-    <div class="exp-item">
-      <div class="exp-hd">
-        <div class="exp-left"><div class="exp-co">Shortgun</div><div class="exp-role">Game Developer</div></div>
-        <div class="exp-right"><div class="exp-period">Jun 2022 – Dec 2022</div><div class="exp-loc">Mumbai, India</div></div>
-        <div class="exp-tog">+</div>
-      </div>
-      <div class="exp-body"><div class="exp-div"></div>
-        <ul class="exp-bul"><li>Developed a zombie survival AR game for Jio Glasses using Unity + Jio SDK, delivering immersive gameplay optimised for constrained XR hardware</li></ul>
-      </div>
-    </div>
-    <div class="exp-item">
-      <div class="exp-hd">
-        <div class="exp-left"><div class="exp-co">CSKAA</div><div class="exp-role">AR/VR Developer</div></div>
-        <div class="exp-right"><div class="exp-period">Jun 2022 – Sep 2022</div><div class="exp-loc">Noida, India</div></div>
-        <div class="exp-tog">+</div>
-      </div>
-      <div class="exp-body"><div class="exp-div"></div>
-        <ul class="exp-bul"><li>Built a Meta University virtual education environment and a 3D Car Visualizer with realistic rendering — shipped to internal stakeholders on schedule</li></ul>
-      </div>
-    </div>
-    <div class="exp-item">
-      <div class="exp-hd">
-        <div class="exp-left"><div class="exp-co">Huawei</div><div class="exp-role">Android Developer Intern</div></div>
-        <div class="exp-right"><div class="exp-period">Jun 2021 – Sep 2021</div></div>
-        <div class="exp-tog">+</div>
-      </div>
-      <div class="exp-body"><div class="exp-div"></div>
-        <ul class="exp-bul"><li>Developed and published GettingRipped fitness app on Huawei AppGallery end-to-end using Huawei HMS Core, gaining hands-on deployment experience</li></ul>
-      </div>
-    </div>
-  </div>
+  <div id="experienceContent"></div>
 </section>
 
 <!-- Projects -->
 <section id="projects">
-  <div class="reveal"><p class="sec-lbl">04 — Featured Work</p><h2 class="sec-title">Projects</h2></div>
+  <div id="projectsContent"></div>
   <div class="proj-grid reveal" id="projGrid"></div>
 </section>
 
 <!-- Contact -->
 <section id="contact">
-  <div class="reveal"><p class="sec-lbl">05 — Get In Touch</p><h2 class="sec-title">Let's Work Together</h2></div>
-  <div class="contact-wrap reveal">
-    <div class="contact-panel">
-      <p class="contact-lead">Open to senior Android and cross-platform roles. If you're building something ambitious — let's talk.</p>
-      <div class="contact-links">
-        <a href="mailto:diksh101sawaliya@gmail.com" class="c-link"><span>✉</span> diksh101sawaliya@gmail.com</a>
-        <a href="tel:+918800869633" class="c-link"><span>✆</span> +91 88008 69633</a>
-        <a href="https://github.com/dikshsawaliya" class="c-link" target="_blank" rel="noopener noreferrer"><span>🐙</span> GitHub</a>
-        <a href="https://www.linkedin.com/in/diksh-sawaliya-6111381a7/" class="c-link" target="_blank" rel="noopener noreferrer"><span>🔗</span> LinkedIn</a>
-        <a href="#" class="c-link"><span>⌖</span> Gurgaon, India</a>
-      </div>
-      <p class="contact-note">Submit the form and your email client will open with a prepared message addressed directly to me.</p>
-    </div>
-    <form id="contactForm" class="contact-form">
-      <div class="fld"><label for="contactName">Your Name</label><input id="contactName" type="text" placeholder="Jane Smith" required /></div>
-      <div class="fld"><label for="contactEmail">Email</label><input id="contactEmail" type="email" placeholder="jane@company.com" required /></div>
-      <div class="fld"><label for="contactMessage">Message</label><textarea id="contactMessage" rows="6" placeholder="Tell me about the opportunity..." required></textarea></div>
-      <button type="submit" class="btn btn-primary">Send Message →</button>
-    </form>
-  </div>
+  <div id="contactContent"></div>
 </section>
 
-<footer>
-  <p>© 2026 Diksh Sawaliya</p>
-  <div class="status-pill"><div class="sdot"></div> Open to opportunities</div>
-</footer>
+<footer id="siteFooter"></footer>
 
 <!-- Add Project Modal -->
 <div class="modal-ov" id="addModal">
@@ -250,6 +94,7 @@
   </div>
 </div>
 
+<script src="data.js"></script>
 <script src="script.js"></script>
 </body>
 </html>

@@ -336,6 +336,132 @@ class PinPad {
   }
 }
 
+function renderNav(){
+  const logo = dom.get('navLogo');
+  const links = dom.get('navLinks');
+  const socials = dom.get('socialLinks');
+  if(logo){
+    logo.textContent = navData.logo;
+    logo.href = navData.logoHref;
+  }
+  if(links){
+    links.innerHTML = navData.links.map(link => `<li><a href="${link.href}">${link.label}</a></li>`).join('');
+  }
+  if(socials){
+    socials.innerHTML = navData.socials.map(link => `<a href="${link.href}" class="social-link" target="_blank" rel="noopener noreferrer">${link.label}</a>`).join('');
+  }
+}
+
+function renderHero(){
+  const container = dom.get('heroContent');
+  if(!container) return;
+  container.innerHTML = `
+    <div class="hero-pill">${heroData.pill}</div>
+    <h1 class="hero-name">${heroData.nameHtml}</h1>
+    <p class="hero-sub">${heroData.subtitle}</p>
+    <div class="hero-btns">${heroData.buttons.map(button => `<a href="${button.href}" class="btn ${button.primary ? 'btn-primary' : 'btn-outline'}">${button.text}</a>`).join('')}</div>
+    <div class="hero-stats">${heroData.stats.map(stat => `<div><div class="stat-n">${stat.value}</div><div class="stat-l">${stat.label}</div></div>`).join('')}</div>
+  `;
+}
+
+function renderSkills(){
+  const section = dom.get('skillsContent');
+  if(!section) return;
+  section.innerHTML = `
+    <div class="reveal"><p class="sec-lbl">${skillsData.label}</p><h2 class="sec-title">${skillsData.title}</h2></div>
+    <div class="skills-grid reveal">${skillsData.groups.map(group => `<div class="skill-card"><div class="skill-cat">${group.category}</div><div class="skill-tags">${group.tags.map(tag => `<span class="skill-tag">${tag}</span>`).join('')}</div></div>`).join('')}</div>
+  `;
+}
+
+function renderJourney(){
+  const section = dom.get('journeyContent');
+  if(!section) return;
+  section.innerHTML = `
+    <div class="reveal"><p class="sec-lbl">${journeyData.label}</p><h2 class="sec-title">${journeyData.title}</h2></div>
+    <p class="journey-intro reveal">${journeyData.intro}</p>
+    <div class="journey-track reveal">${journeyData.eras.map(era => `
+      <div class="j-era ${era.className}">
+        <div class="j-dot-col"><div class="j-dot"></div></div>
+        <div class="j-content">
+          <div class="j-meta"><span class="j-year">${era.year}</span><span class="j-badge">${era.badge}</span></div>
+          <h3 class="j-title">${era.title}</h3>
+          <p class="j-body">${era.body}</p>
+          <div class="j-tech">${era.tags.map(tag => `<span class="j-tag">${tag}</span>`).join('')}</div>
+        </div>
+      </div>
+    `).join('')}</div>
+  `;
+}
+
+function renderExperience(){
+  const section = dom.get('experienceContent');
+  if(!section) return;
+  section.innerHTML = `
+    <div class="reveal"><p class="sec-lbl">${experienceData.label}</p><h2 class="sec-title">${experienceData.title}</h2></div>
+    <div class="exp-list reveal">${experienceData.items.map(item => `
+      <div class="exp-item${item.open ? ' open' : ''}">
+        <div class="exp-hd">
+          <div class="exp-left"><div class="exp-co">${item.company}</div><div class="exp-role">${item.role}</div></div>
+          <div class="exp-right"><div class="exp-period">${item.period}</div>${item.loc ? `<div class="exp-loc">${item.loc}</div>` : ''}</div>
+          <div class="exp-tog">+</div>
+        </div>
+        <div class="exp-body${item.open ? ' open' : ''}"><div class="exp-div"></div>
+          <ul class="exp-bul">${item.bullets.map(bullet => `<li>${bullet}</li>`).join('')}</ul>
+        </div>
+      </div>
+    `).join('')}</div>
+  `;
+}
+
+function renderContact(){
+  const section = dom.get('contactContent');
+  if(!section) return;
+  section.innerHTML = `
+    <div class="reveal"><p class="sec-lbl">${contactData.label}</p><h2 class="sec-title">${contactData.title}</h2></div>
+    <div class="contact-wrap reveal">
+      <div class="contact-panel">
+        <p class="contact-lead">${contactData.lead}</p>
+        <div class="contact-links">${contactData.details.map(detail => `<a href="${detail.href}" class="c-link"><span>${detail.icon}</span> ${detail.text}</a>`).join('')}</div>
+        <p class="contact-note">${contactData.note}</p>
+      </div>
+      <form id="contactForm" class="contact-form">
+        <div class="fld"><label for="contactName">${contactData.form.name}</label><input id="contactName" type="text" placeholder="${contactData.form.placeholders.name}" required /></div>
+        <div class="fld"><label for="contactEmail">${contactData.form.email}</label><input id="contactEmail" type="email" placeholder="${contactData.form.placeholders.email}" required /></div>
+        <div class="fld"><label for="contactMessage">${contactData.form.message}</label><textarea id="contactMessage" rows="6" placeholder="${contactData.form.placeholders.message}" required></textarea></div>
+        <button type="submit" class="btn btn-primary">${contactData.form.submit}</button>
+      </form>
+    </div>
+  `;
+}
+
+function renderProjectsSection(){
+  const section = dom.get('projectsContent');
+  if(!section) return;
+  section.innerHTML = `
+    <div class="reveal"><p class="sec-lbl">${projectsData.label}</p><h2 class="sec-title">${projectsData.title}</h2></div>
+  `;
+}
+
+function renderFooter(){
+  const footer = dom.get('siteFooter');
+  if(!footer) return;
+  footer.innerHTML = `
+    <p>${footerData.copyright}</p>
+    <div class="status-pill"><div class="sdot"></div> ${footerData.status}</div>
+  `;
+}
+
+function renderSite(){
+  renderNav();
+  renderHero();
+  renderSkills();
+  renderJourney();
+  renderExperience();
+  renderProjectsSection();
+  renderContact();
+  renderFooter();
+}
+
 const themeManager = new ThemeManager();
 const scrollTracker = new ScrollTracker('nav');
 const revealObserver = new RevealObserver('.reveal');
@@ -346,13 +472,7 @@ const toast = new Toast('toast');
 
 const projectManager = new ProjectManager({
   containerId: 'projGrid',
-  defaults: [
-    {id:'d1',title:'AI Voice Recognition SDK',desc:'Architected and shipped a cross-platform voice recognition SDK with a React Native wrapper that cut integration time by ~40% for partner teams across 3 product domains.',tags:['Kotlin','React Native','Voice SDK','AI/ML'],domain:'SDK · Cross-Platform',year:'2024'},
-    {id:'d3',title:'Barcode Scanner SDK — Denso',desc:'Led SDK integration for Denso retail hardware achieving <200ms scan-to-result latency with full compatibility across 5+ hardware SKUs.',tags:['Kotlin','SDK','Hardware Integration','Retail'],domain:'Retail · Android',year:'2024'},
-    {id:'d2',title:'Yatra.com Android — Stability',desc:'Drove crash-free sessions to 99.4%+ on a travel app serving millions. Implemented Firebase Crashlytics alerting, fixed ANRs, and resolved memory leaks using LeakCanary.',tags:['Kotlin','Firebase','LeakCanary','Crashlytics'],domain:'Travel · Android',year:'2023'},
-    {id:'d5',title:'AR Zombie Survival — Jio Glasses',desc:'Built a zombie survival AR game for Jio smart glasses using Unity + Jio SDK, optimised for constrained XR hardware.',tags:['Unity','C#','Jio SDK','AR/XR'],domain:'Gaming · AR',year:'2022'},
-    {id:'d4',title:'GettingRipped — Fitness App',desc:'Developed and published an end-to-end fitness application on Huawei AppGallery using Huawei HMS Core during an Android internship.',tags:['Kotlin','HMS Core','Huawei AppGallery'],domain:'Health · Android',year:'2021'}
-  ],
+  defaults: projectDefaults,
   storageKey: 'ds_projs',
   toast,
   addModal,
@@ -361,7 +481,7 @@ const projectManager = new ProjectManager({
 });
 
 const pinPad = new PinPad({
-  pin: '2580',
+  pin: ADMIN_PIN,
   toast,
   pinModal,
   onSuccess(){
@@ -372,6 +492,7 @@ const pinPad = new PinPad({
 });
 
 function init(){
+  renderSite();
   themeManager.init();
   dom.qS('.theme-btn')?.addEventListener('click', () => themeManager.toggle());
   dom.qSA('.exp-hd').forEach(header => header.addEventListener('click', () => accordion.toggle(header)));
