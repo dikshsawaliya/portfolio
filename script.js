@@ -374,6 +374,7 @@ const pinPad = new PinPad({
 function init(){
   themeManager.init();
   dom.qS('.theme-btn')?.addEventListener('click', () => themeManager.toggle());
+  dom.qSA('.exp-hd').forEach(header => header.addEventListener('click', () => accordion.toggle(header)));
   dom.get('contactForm')?.addEventListener('submit', handleContact);
   scrollTracker.init();
   revealObserver.init();
