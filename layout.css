@@ -29,6 +29,10 @@ section{padding:84px 48px}
 .contact-wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:60px;align-items:start}
 .contact-lead{font-size:17px;color:var(--text2);line-height:1.75;margin-bottom:32px}
 .contact-links{display:flex;flex-direction:column;gap:10px}
+.contact-panel{display:flex;flex-direction:column;gap:26px}
+.contact-note{font-size:13px;color:var(--text3);line-height:1.7;max-width:520px}
+.contact-form{display:grid;gap:18px}
+.contact-form .btn{width:fit-content;min-width:220px;justify-content:center}
 .c-link{display:flex;align-items:center;gap:13px;text-decoration:none;font-size:14px;font-weight:500;color:var(--text2);padding:13px 17px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--card);transition:all .2s}
 .c-link:hover{border-color:var(--accent);color:var(--accent);transform:translateX(4px)}
 

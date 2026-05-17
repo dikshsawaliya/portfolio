@@ -374,6 +374,7 @@ const pinPad = new PinPad({
 function init(){
   themeManager.init();
   dom.qS('.theme-btn')?.addEventListener('click', () => themeManager.toggle());
+  dom.get('contactForm')?.addEventListener('submit', handleContact);
   scrollTracker.init();
   revealObserver.init();
   pinPad.init();
@@ -392,4 +393,20 @@ function closeAdd(){ projectManager.closeAdd(); }
 function saveProject(){ projectManager.saveProject(); }
 function delProj(id, event){ projectManager.deleteProject(id, event); }
 function toastMessage(msg){ toast.show(msg); }
-function handleContact(){ toast.show('Message sent! (demo mode)'); }
+function handleContact(event){
+  event.preventDefault();
+  const name = dom.get('contactName')?.value.trim();
+  const email = dom.get('contactEmail')?.value.trim();
+  const message = dom.get('contactMessage')?.value.trim();
+
+  if(!name || !email || !message){
+    toast.show('Please complete all fields before sending.');
+    return;
+  }
+
+  const emailAddress = 'diksh101sawaliya@gmail.com';
+  const subject = encodeURIComponent(`Portfolio message from ${name}`);
+  const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
+  window.location.href = `mailto:${emailAddress}?subject=${subject}&body=${body}`;
+  toast.show('Launching mail app...');
+}

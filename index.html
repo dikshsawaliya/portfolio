@@ -185,20 +185,21 @@
 <section id="contact">
   <div class="reveal"><p class="sec-lbl">05 — Get In Touch</p><h2 class="sec-title">Let's Work Together</h2></div>
   <div class="contact-wrap reveal">
-    <div>
+    <div class="contact-panel">
       <p class="contact-lead">Open to senior Android and cross-platform roles. If you're building something ambitious — let's talk.</p>
       <div class="contact-links">
         <a href="mailto:diksh101sawaliya@gmail.com" class="c-link"><span>✉</span> diksh101sawaliya@gmail.com</a>
         <a href="tel:+918800869633" class="c-link"><span>✆</span> +91 88008 69633</a>
         <a href="#" class="c-link"><span>⌖</span> Gurgaon, India</a>
       </div>
+      <p class="contact-note">Submit the form and your email client will open with a prepared message addressed directly to me.</p>
     </div>
-    <div>
-      <div class="fld"><label>Your Name</label><input type="text" placeholder="Jane Smith" /></div>
-      <div class="fld"><label>Email</label><input type="email" placeholder="jane@company.com" /></div>
-      <div class="fld"><label>Message</label><textarea rows="5" placeholder="Tell me about the opportunity..."></textarea></div>
-      <button id="contactSend" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:4px">Send Message →</button>
-    </div>
+    <form id="contactForm" class="contact-form">
+      <div class="fld"><label for="contactName">Your Name</label><input id="contactName" type="text" placeholder="Jane Smith" required /></div>
+      <div class="fld"><label for="contactEmail">Email</label><input id="contactEmail" type="email" placeholder="jane@company.com" required /></div>
+      <div class="fld"><label for="contactMessage">Message</label><textarea id="contactMessage" rows="6" placeholder="Tell me about the opportunity..." required></textarea></div>
+      <button type="submit" class="btn btn-primary">Send Message →</button>
+    </form>
   </div>
 </section>
 
