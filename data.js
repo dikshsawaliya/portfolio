@@ -8,6 +8,7 @@ const projectDefaults = [
     tags: ["Kotlin", "React Native", "Voice SDK", "AI/ML"],
     domain: "SDK · Cross-Platform",
     year: "2024",
+    gitHub: "",
   },
   {
     id: "d2",
@@ -16,6 +17,7 @@ const projectDefaults = [
     tags: ["Kotlin", "Firebase", "LeakCanary", "Crashlytics"],
     domain: "Travel · Android",
     year: "2023",
+    gitHub: "",
   },
   {
     id: "d3",
@@ -23,6 +25,7 @@ const projectDefaults = [
     desc: "Led SDK integration for Denso retail hardware achieving <200ms scan-to-result latency with full compatibility across 5+ hardware SKUs.",
     tags: ["Kotlin", "SDK", "Hardware Integration", "Retail"],
     domain: "Retail · Android",
+    gitHub: "",
     year: "2024",
   },
   {
@@ -31,6 +34,7 @@ const projectDefaults = [
     desc: "Developed and published an end-to-end fitness application on Huawei AppGallery using Huawei HMS Core during an Android internship.",
     tags: ["Kotlin", "HMS Core", "Huawei AppGallery"],
     domain: "Health · Android",
+    gitHub: "https://github.com/dikshsawaliya/GettingRipped",
     year: "2021",
   },
   {
@@ -39,6 +43,7 @@ const projectDefaults = [
     desc: "Built a zombie survival AR game for Jio smart glasses using Unity + Jio SDK, optimised for constrained XR hardware.",
     tags: ["Unity", "C#", "Jio SDK", "AR/XR"],
     domain: "Gaming · AR",
+    gitHub: "",
     year: "2022",
   },
   {
@@ -46,6 +51,7 @@ const projectDefaults = [
     title: "Smart Presentation Slider",
     desc: "Developed an AI-driven presentation automation system that performs real-time slide navigation using speech recognition, voice authentication, semantic search, and PowerPoint automation.",
     tags: ["AI / ML", "PySide6", "OpenAI Whisper", "SoundDevice"],
+    gitHub: "https://github.com/dikshsawaliya/AI_Presentation",
     domain: "Python",
     year: "2026",
   },
@@ -71,7 +77,7 @@ const navData = {
 };
 
 const heroData = {
-  pill: "Senior Android & Cross-Platform Engineer",
+  pill: "Android & Cross-Platform Engineer",
   nameHtml: 'Diksh<br><span class="hl">Sawaliya</span>',
   subtitle: "Building production apps that serve millions — from AI-powered SDKs to 60fps Compose UIs. 3+ years across travel, fintech, retail, and networking.<br /><br />Beyond mobile, I continuously build products and solve real-world problems across different tech stacks, leveraging AI to rapidly learn, adapt, and ship impactful solutions.",
   buttons: [
@@ -81,7 +87,7 @@ const heroData = {
   stats: [
     { value: "3+", label: "Years experience" },
     { value: "4+", label: "Production apps" },
-    { value: "99.4%", label: "Crash-free sessions" },
+    { value: "Hughes Systique Corporation", label: "Currently Working with" },
     { value: "~40%", label: "Integration time saved" },
     { value: "100k+", label: "Active users reached" },
   ],

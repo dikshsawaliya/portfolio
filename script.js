@@ -184,13 +184,14 @@ class ProjectManager {
 
   createProjectCard(project, index){
     const card = dom.create('div', { className: 'proj-card reveal' });
+    const githubLink = project.gitHub ? `<a href="${project.gitHub}" target="_blank" rel="noopener noreferrer" class="proj-github" title="View on GitHub">→ GitHub</a>` : '';
     card.innerHTML = `
       ${this.admin && !project.id.startsWith('d') ? `<button class="proj-del" onclick="delProj('${project.id}', event)">✕</button>` : ''}
       <div class="proj-num">0${index}</div>
       <div class="proj-title">${project.title}</div>
       <div class="proj-desc">${project.desc}</div>
       <div class="proj-tags">${(project.tags || []).map(tag => `<span class="proj-tag">${tag}</span>`).join('')}</div>
-      <div class="proj-foot"><span class="dot">●</span>${project.year || ''}${project.domain ? ' · ' + project.domain : ''}</div>
+      <div class="proj-foot"><span class="dot">●</span>${project.year || ''}${project.domain ? ' · ' + project.domain : ''}${githubLink ? ' ' + githubLink : ''}</div>
     `;
     return card;
   }
@@ -220,7 +221,7 @@ class ProjectManager {
   }
 
   clearAddForm(){
-    ['pTitle','pDesc','pTags','pDomain','pYear'].forEach(id=>{
+    ['pTitle','pDesc','pTags','pDomain','pYear','pGitHub'].forEach(id=>{
       const element = dom.get(id);
       if(element) element.value = '';
     });
@@ -237,6 +238,7 @@ class ProjectManager {
     const tags = dom.get('pTags')?.value.split(',').map(tag => tag.trim()).filter(Boolean) || [];
     const domain = dom.get('pDomain')?.value.trim() || '';
     const year = dom.get('pYear')?.value.trim() || new Date().getFullYear().toString();
+    const gitHub = dom.get('pGitHub')?.value.trim() || '';
 
     this.customProjects.unshift({
       id: 'p_' + Date.now(),
@@ -244,7 +246,8 @@ class ProjectManager {
       desc,
       tags,
       domain,
-      year
+      year,
+      gitHub
     });
     this.persist();
     this.render();

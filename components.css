@@ -75,6 +75,8 @@
 .proj-tag{font-family:var(--mono);font-size:11px;background:var(--tag-bg);color:var(--tag-txt);padding:3px 9px;border-radius:4px}
 .proj-foot{font-family:var(--mono);font-size:11px;color:var(--text3);display:flex;align-items:center;gap:6px;padding-top:14px;border-top:1px solid var(--border)}
 .proj-foot .dot{color:var(--accent)}
+.proj-github{color:var(--accent);text-decoration:none;font-weight:500;cursor:pointer;transition:opacity .2s;margin-left:auto;white-space:nowrap}
+.proj-github:hover{opacity:0.8}
 .proj-del{position:absolute;top:14px;right:14px;width:28px;height:28px;border-radius:6px;border:1px solid transparent;background:transparent;color:var(--text3);font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:all .2s}
 .proj-card:hover .proj-del{opacity:1}
 .proj-del:hover{border-color:#e53e3e;color:#e53e3e;background:rgba(229,62,62,.08)}
