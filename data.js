@@ -66,6 +66,7 @@ const navData = {
     { href: "#experience", label: "Experience" },
     { href: "#projects", label: "Projects" },
     { href: "#contact", label: "Contact" },
+    { href: "#cv", label: "CV" },
   ],
   socials: [
     { href: "https://github.com/dikshsawaliya", label: "GitHub" },
@@ -312,4 +313,6 @@ const projectsData = {
 const footerData = {
   copyright: "© 2026 Diksh Sawaliya",
   status: "Open to opportunities",
+  cvHref: "Diksh_Sawaliya_Resume.pdf",
+  cvLabel: "CV",
 };

@@ -450,9 +450,13 @@ function renderFooter(){
   if(!footer) return;
   footer.innerHTML = `
     <p>${footerData.copyright}</p>
-    <div class="status-pill"><div class="sdot"></div> ${footerData.status}</div>
+    <div style="display:flex;gap:12px;align-items:center;margin-top:6px">
+      <div class="status-pill"><div class="sdot"></div> ${footerData.status}</div>
+      <a href="#cv" class="btn btn-outline">${footerData.cvLabel || 'CV'}</a>
+    </div>
   `;
 }
+
 
 function renderSite(){
   renderNav();
@@ -471,6 +475,7 @@ const revealObserver = new RevealObserver('.reveal');
 const accordion = new Accordion(document, '.exp-item', '.exp-body', 'open');
 const addModal = new Modal('addModal');
 const pinModal = new Modal('pinModal');
+const cvModal = new Modal('cvModal');
 const toast = new Toast('toast');
 
 const projectManager = new ProjectManager({
@@ -504,6 +509,20 @@ function init(){
   revealObserver.init();
   pinPad.init();
   projectManager.render();
+
+  // Attach handlers for CV open/close (nav + footer links)
+  dom.qSA('a[href="#cv"]').forEach(el => {
+    el.addEventListener('click', (ev) => {
+      ev.preventDefault();
+      const src = footerData.cvHref || 'Diksh_Sawaliya_Resume.pdf';
+      const iframe = dom.get('cvIframe');
+      const dl = dom.get('cvDownload');
+      if(iframe) iframe.src = src;
+      if(dl) dl.href = src;
+      cvModal.open();
+    });
+  });
+  dom.get('cvClose')?.addEventListener('click', () => cvModal.close());
 }
 
 init();

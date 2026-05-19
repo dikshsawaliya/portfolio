@@ -95,7 +95,22 @@
   </div>
 </div>
 
+<!-- CV Modal -->
+<div class="modal-ov" id="cvModal">
+  <div class="modal" style="max-width:900px; width:96%; height:90%; padding:0; overflow:hidden;">
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid rgba(0,0,0,0.06);">
+      <strong>Curriculum Vitae</strong>
+      <div>
+        <a id="cvDownload" href="Diksh_Sawaliya_Resume.pdf" target="_blank" download class="btn btn-outline" style="margin-right:8px">Download</a>
+        <button id="cvClose" class="btn-cancel">Close</button>
+      </div>
+    </div>
+    <iframe id="cvIframe" src="" style="width:100%;height:calc(100% - 56px);border:0" title="CV viewer"></iframe>
+  </div>
+</div>
+
 <script src="data.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
+
